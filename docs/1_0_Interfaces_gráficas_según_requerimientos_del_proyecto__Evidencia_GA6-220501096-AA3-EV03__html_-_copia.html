@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos App</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #a4a3a3;
+        }
+        /* HEADER */
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: white;
+        }
+        
+        nav a {
+            margin: 0 10px;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+        }
+        
+        .btn {
+            background: #222;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        /* SECCIONES */
+        
+        .seccion {
+            display: none;
+            padding: 20px;
+        }
+        /* CATEGORIAS */
+        
+        .categorias {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+        
+        .card {
+            background: white;
+            padding: 20px;
+            width: 250px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        /* PRODUCTOS */
+        
+        .producto {
+            display: flex;
+            background: #f8f8f8;
+            margin: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            align-items: center;
+        }
+        
+        .producto img {
+            width: 150px;
+            margin-right: 30px;
+        }
+        /* FORMULARIOS */
+        
+        .form {
+            width: 300px;
+            margin: auto;
+            background: hsl(0, 100%, 100%);
+            padding: 20px;
+        }
+        
+        input,
+        textarea {
+            width: 80%;
+            margin: 20px 0;
+            padding: 10px;
+        }
+        /* BENEFICIOS */
+        
+        .beneficios {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: hwb(0 100% 0%);
+        }
+        /* FOOTER */
+        
+        footer {
+            background: #ddd;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        function mostrar(id) {
+            document.querySelectorAll(".seccion").forEach(s => s.style.display = "none");
+            document.getElementById(id).style.display = "block";
+        }
+
+        function validar() {
+            let pass = document.getElementById("pass").value;
+            let msg = document.getElementById("msg");
+
+            let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W]).{8,}$/;
+
+            if (!regex.test(pass)) {
+                msg.style.color = "red";
+                msg.innerHTML = "Contraseña inválida (mín 8, mayúscula, número y símbolo)";
+            } else {
+                msg.style.color = "green";
+                msg.innerHTML = "Cuenta creada con éxito";
+            }
+        }
+
+
+        window.onload = () => mostrar('inicio');
+    </script>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="logo" onclick="mostrar('inicio')">
+            <img src="logo.png" alt="Fercementos">
+        </div>
+        <h2 onclick="mostrar('inicio')" style="cursor:pointer;"> Ferreteria FERCEMENTOS AXM</h2>
+
+        <nav>
+            <a onclick="mostrar('inicio')">Inicio</a>
+            <a onclick="mostrar('catalogo')">Catálogo</a>
+            <a onclick="mostrar('quienes')">Quiénes somos</a>
+            <a onclick="mostrar('contacto')">Contáctanos</a>
+            <a onclick="mostrar('login')">Login</a>
+            <a onclick="mostrar('registro')">Registro</a>
+        </nav>
+
+    </header>
+
+    <!-- INICIO -->
+    <div id="inicio" class="seccion">
+        <h2 style="text-align:center;">Categorías</h2>
+
+        <div class="categorias">
+
+            <div class="card" onclick=" mostrar ('Herramientas de mano')">
+                <h3>Herramientas de mano</h3>
+            </div>
+
+            <div class="card" onclick=" mostrar ('Materiales de rio')">
+                <h3>Material de río</h3>
+            </div>
+
+            <div class="card" onclick=" mostrar ('Materiales')">
+                <h3>Materiales</h3>
+            </div>
+
+        </div>
+        <p style="margin-bottom: 100px;"></p>
+        <div class="beneficios">
+            <div> Envíos 100% seguros hasta la puerta de tu casa</div>
+            <div> Envío Gratis sin costo adicional</div>
+            <div> Los precios mas competitivos del mercado </div>
+        </div>
+        <p style="margin-bottom: 80px;"></p>
+    </div>
+
+    <!-- CATALOGO -->
+    <div id="catalogo" class="seccion">
+        <h2 style="text-align:center;">Herramientas de mano</h2>
+
+        <div class="producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToVg7H1kDeJYUCtnuex9mvL_RRisLTTvO2fw&s">
+            <div>
+                <h3>Carreta colima metalica con llanta anti-pinchazos</h3>
+                <p>$220.000</p>
+                <button class="btn">Agregar al carrito de compras</button>
+            </div>
+        </div>
+
+        <div class="producto">
+            <img src="https://incolma.com/wp-content/uploads/2024/10/Palustre-Gavilan-Nuevo.webp">
+            <div>
+                <h3>Palustre gavilán 8 pulgadas</h3>
+                <p>$15.000</p>
+                <button class="btn">Agregar al carrito de compras</button>
+            </div>
+        </div>
+
+        <div class="producto">
+            <img src="https://media.falabella.com/sodimacCO/580333/public">
+            <div>
+                <h3>Kit de copas de 36 unidades Truper</h3>
+                <p>$255.580</p>
+                <button class="btn">Agregar al carrito de compras</button>
+            </div>
+        </div>
+        <button class="btn">Mostrar más</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="login" class="seccion">
+        <div class="form">
+            <h2>Iniciar sesión</h2>
+            <input type="text" placeholder="Usuario">
+            <input type="password" placeholder="Contraseña">
+            <p>Olvido la contraseña?</p>
+            <button class="btn">Ingresar</button>
+        </div>
+    </div>
+
+    <!-- REGISTRO -->
+    <div id="registro" class="seccion">
+        <div class="form">
+            <h2>Nuevo Usuario</h2>
+            <input type="text" placeholder="ID Usuario">
+            <input type="email" placeholder="Correo">
+            <input type="date">
+            <input type="text" placeholder="Dirección">
+            <input type="password" id="pass" placeholder="Contraseña">
+
+            <button class="btn" onclick="validar()">Crear cuenta</button>
+            <p id="msg"></p>
+        </div>
+    </div>
+
+    <!-- QUIENES SOMOS -->
+    <div id="quienes" class="seccion">
+        <div class="form">
+            <h2>Quiénes somos</h2>
+            <p>En Fercementos somos una ferretería comprometida con brindar soluciones confiables y de calidad para la construcción, el hogar y la industria. </p>
+            <p>Contamos con una amplia variedad de productos que incluyen materiales de obra, herramientas,acabados y todo lo necesario para llevar a cabo tus proyectos de manera eficiente. </p>
+            <p>Nos caracterizamos por ofrecer un servicio cercano, asesoría personalizada y productos de las mejores marcas, garantizando durabilidad y satisfacción en cada compra.</p>
+            <p>Nuestro equipo está conformado por personas capacitadas que trabajan con responsabilidad y compromiso para atender las necesidades de nuestros clientes.</p>
+            <p>En Fercementos creemos en el crecimiento conjunto con nuestra comunidad, apoyando tanto a profesionales de la construcción como a quienes buscan mejorar sus espacios. </p>
+            <p>Somos más que una ferretería: somos tu aliado en cada proyecto.</p>
+        </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div id="contacto" class="seccion">
+        <div class="form">
+            <h2>Contáctanos</h2>
+            <input type="text" placeholder="Nombre">
+            <input type="email" placeholder="Correo">
+            <textarea placeholder="Mensaje"></textarea>
+            <button class="btn">Enviar</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Noticias</p>
+        <input placeholder="Ingresa tu email">
+        <button class="btn">Suscribirse</button>
+    </footer>
+
+</body>
+
+</html>
