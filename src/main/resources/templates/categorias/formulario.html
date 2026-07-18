@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos | Categoría</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos :: cabeceraApp}"></header>
+
+    <main class="contenedor contenedor-angosto">
+
+        <!-- El titulo cambia segun sea creacion o edicion -->
+        <h2 class="titulo-formulario"
+            th:text="${categoria.idCategoria} == null ? 'Nueva categoría' : 'Editar categoría'"></h2>
+
+        <form class="formulario" th:action="@{/categorias/guardar}" th:object="${categoria}" method="post">
+
+            <!-- Campo oculto con el id: null = insertar, valor = actualizar -->
+            <input type="hidden" th:field="*{idCategoria}">
+
+            <label for="nombreCategoria">Nombre de la categoría</label>
+            <input type="text" id="nombreCategoria" th:field="*{nombreCategoria}" maxlength="100" required autofocus>
+            <p class="error-campo" th:if="${#fields.hasErrors('nombreCategoria')}" th:errors="*{nombreCategoria}"></p>
+
+            <div class="acciones-formulario">
+                <button type="submit" class="boton boton-primario">Guardar</button>
+                <a class="boton boton-secundario" th:href="@{/categorias}">Cancelar</a>
+            </div>
+
+        </form>
+
+    </main>
+
+    <footer th:replace="~{fragmentos :: pie}"></footer>
+
+</body>
+</html>

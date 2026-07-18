@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos | Productos</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos :: cabeceraApp}"></header>
+
+    <main class="contenedor">
+
+        <div class="barra-acciones">
+            <h2 class="titulo-formulario">Productos</h2>
+
+            <!-- Busqueda por nombre: GET /productos?q=... -->
+            <form th:action="@{/productos}" method="get" style="display:flex; gap:8px;">
+                <input type="text" name="q" placeholder="Buscar por nombre..."
+                       th:value="${q}" style="padding:8px 10px; border:1px solid var(--borde);">
+                <button type="submit" class="boton boton-secundario">Buscar</button>
+            </form>
+
+            <a class="boton boton-primario" th:href="@{/productos/nuevo}">+ Nuevo producto</a>
+        </div>
+
+        <p class="mensaje-vacio" th:if="${#lists.isEmpty(productos)}">
+            No hay productos para mostrar.</p>
+
+        <table class="tabla" th:unless="${#lists.isEmpty(productos)}">
+            <thead>
+                <tr>
+                    <th>ID</th><th>Nombre</th><th>Categoría</th><th>Proveedor</th>
+                    <th>Precio</th><th>Stock</th><th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${productos}">
+                    <td th:text="${p.idProducto}"></td>
+                    <td th:text="${p.nombre}"></td>
+                    <!-- El operador ?. evita error si el producto no tiene categoria/proveedor -->
+                    <td th:text="${p.categoria?.nombreCategoria} ?: '—'"></td>
+                    <td th:text="${p.proveedor?.nombre} ?: '—'"></td>
+                    <td th:text="${#numbers.formatDecimal(p.precio, 1, 'POINT', 2, 'COMMA')}"></td>
+                    <td th:text="${p.stock}"></td>
+                    <td class="celda-acciones">
+                        <a class="enlace-editar" th:href="@{/productos/editar/{id}(id=${p.idProducto})}">Editar</a>
+                        <a class="enlace-eliminar" th:href="@{/productos/eliminar/{id}(id=${p.idProducto})}"
+                           onclick="return confirm('¿Eliminar este producto?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+
+    <footer th:replace="~{fragmentos :: pie}"></footer>
+
+</body>
+</html>

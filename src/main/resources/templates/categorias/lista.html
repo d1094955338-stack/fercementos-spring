@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos | Categorías</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos :: cabeceraApp}"></header>
+
+    <main class="contenedor">
+
+        <div class="barra-acciones">
+            <h2 class="titulo-formulario">Categorías</h2>
+            <a class="boton boton-primario" th:href="@{/categorias/nueva}">+ Nueva categoría</a>
+        </div>
+
+        <p class="mensaje-vacio" th:if="${#lists.isEmpty(categorias)}">
+            Aún no hay categorías registradas.</p>
+
+        <table class="tabla" th:unless="${#lists.isEmpty(categorias)}">
+            <thead>
+                <tr><th>ID</th><th>Nombre</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+                <!-- th:each itera la lista enviada por el controlador -->
+                <tr th:each="c : ${categorias}">
+                    <td th:text="${c.idCategoria}"></td>
+                    <td th:text="${c.nombreCategoria}"></td>
+                    <td class="celda-acciones">
+                        <a class="enlace-editar" th:href="@{/categorias/editar/{id}(id=${c.idCategoria})}">Editar</a>
+                        <a class="enlace-eliminar" th:href="@{/categorias/eliminar/{id}(id=${c.idCategoria})}"
+                           onclick="return confirm('¿Eliminar esta categoría?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+
+    <footer th:replace="~{fragmentos :: pie}"></footer>
+
+</body>
+</html>

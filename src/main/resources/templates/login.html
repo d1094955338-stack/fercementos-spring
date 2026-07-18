@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- Pantalla "Iniciar sesion" del prototipo Balsamiq.
+     El formulario hace POST a /login, que procesa Spring Security
+     (no hay controlador propio para ese POST). Los nombres de los
+     campos deben ser "username" y "password", que son los que el
+     framework espera por defecto. -->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos | Iniciar sesión</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos :: cabeceraPublica}"></header>
+
+    <main class="contenedor contenedor-angosto">
+
+        <h2 class="titulo-formulario">Iniciar sesión</h2>
+
+        <!-- Mensajes segun el parametro de la URL -->
+        <p class="mensaje-exito" th:if="${param.cuentaCreada}">
+            Cuenta creada correctamente. Ya puedes iniciar sesión.</p>
+        <p class="mensaje-exito" th:if="${param.salir}">
+            Sesión cerrada correctamente.</p>
+        <!-- Mensaje de error definido en el Caso de Uso 001 (excepcion 1) -->
+        <p class="mensaje-error" th:if="${param.error}">
+            Los datos ingresados son incorrectos.</p>
+
+        <form class="formulario" th:action="@{/login}" method="post">
+
+            <label for="username">Ingresar usuario</label>
+            <input type="text" id="username" name="username" required autofocus>
+
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="acciones-formulario">
+                <button type="submit" class="boton boton-primario">Ingresar</button>
+            </div>
+
+            <p class="enlace-secundario">
+                ¿No tienes cuenta? <a th:href="@{/registro}">Crear cuenta</a>
+            </p>
+
+        </form>
+
+    </main>
+
+    <footer th:replace="~{fragmentos :: pie}"></footer>
+
+</body>
+</html>

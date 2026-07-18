@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos | Proveedores</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos :: cabeceraApp}"></header>
+
+    <main class="contenedor">
+
+        <div class="barra-acciones">
+            <h2 class="titulo-formulario">Proveedores</h2>
+            <a class="boton boton-primario" th:href="@{/proveedores/nuevo}">+ Nuevo proveedor</a>
+        </div>
+
+        <p class="mensaje-vacio" th:if="${#lists.isEmpty(proveedores)}">
+            Aún no hay proveedores registrados.</p>
+
+        <table class="tabla" th:unless="${#lists.isEmpty(proveedores)}">
+            <thead>
+                <tr><th>ID</th><th>Nombre</th><th>Teléfono</th><th>Dirección</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${proveedores}">
+                    <td th:text="${p.idProveedor}"></td>
+                    <td th:text="${p.nombre}"></td>
+                    <td th:text="${p.telefono}"></td>
+                    <td th:text="${p.direccion}"></td>
+                    <td class="celda-acciones">
+                        <a class="enlace-editar" th:href="@{/proveedores/editar/{id}(id=${p.idProveedor})}">Editar</a>
+                        <a class="enlace-eliminar" th:href="@{/proveedores/eliminar/{id}(id=${p.idProveedor})}"
+                           onclick="return confirm('¿Eliminar este proveedor?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+
+    <footer th:replace="~{fragmentos :: pie}"></footer>
+
+</body>
+</html>

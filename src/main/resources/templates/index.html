@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- Menu principal tras iniciar sesion. Da acceso a los cinco modulos
+     que corresponden a las tablas del script SQL oficial del proyecto. -->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos | Inicio</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos :: cabeceraApp}"></header>
+
+    <main class="contenedor">
+
+        <p class="subtitulo-inicio">Selecciona el módulo que quieres gestionar:</p>
+
+        <div class="grilla-modulos">
+            <a class="tarjeta-modulo" th:href="@{/productos}">
+                <h3>Productos</h3>
+                <p>Catálogo, precios y existencias.</p>
+            </a>
+            <a class="tarjeta-modulo" th:href="@{/categorias}">
+                <h3>Categorías</h3>
+                <p>Clasificación de los productos.</p>
+            </a>
+            <a class="tarjeta-modulo" th:href="@{/proveedores}">
+                <h3>Proveedores</h3>
+                <p>Empresas que abastecen la ferretería.</p>
+            </a>
+            <a class="tarjeta-modulo" th:href="@{/clientes}">
+                <h3>Clientes</h3>
+                <p>Personas y empresas que compran.</p>
+            </a>
+            <a class="tarjeta-modulo" th:href="@{/ventas}">
+                <h3>Ventas</h3>
+                <p>Registro de ventas y su detalle.</p>
+            </a>
+        </div>
+
+    </main>
+
+    <footer th:replace="~{fragmentos :: pie}"></footer>
+
+</body>
+</html>

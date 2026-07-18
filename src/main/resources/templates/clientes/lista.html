@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos | Clientes</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos :: cabeceraApp}"></header>
+
+    <main class="contenedor">
+
+        <div class="barra-acciones">
+            <h2 class="titulo-formulario">Clientes</h2>
+            <a class="boton boton-primario" th:href="@{/clientes/nuevo}">+ Nuevo cliente</a>
+        </div>
+
+        <p class="mensaje-vacio" th:if="${#lists.isEmpty(clientes)}">
+            Aún no hay clientes registrados.</p>
+
+        <table class="tabla" th:unless="${#lists.isEmpty(clientes)}">
+            <thead>
+                <tr><th>ID</th><th>Nombre</th><th>Teléfono</th><th>Dirección</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="c : ${clientes}">
+                    <td th:text="${c.idCliente}"></td>
+                    <td th:text="${c.nombre}"></td>
+                    <td th:text="${c.telefono}"></td>
+                    <td th:text="${c.direccion}"></td>
+                    <td class="celda-acciones">
+                        <a class="enlace-editar" th:href="@{/clientes/editar/{id}(id=${c.idCliente})}">Editar</a>
+                        <a class="enlace-eliminar" th:href="@{/clientes/eliminar/{id}(id=${c.idCliente})}"
+                           onclick="return confirm('¿Eliminar este cliente?');">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+
+    <footer th:replace="~{fragmentos :: pie}"></footer>
+
+</body>
+</html>
