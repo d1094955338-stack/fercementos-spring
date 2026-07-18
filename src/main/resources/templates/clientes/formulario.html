@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos | Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos :: cabeceraApp}"></header>
+
+    <main class="contenedor contenedor-angosto">
+
+        <h2 class="titulo-formulario"
+            th:text="${cliente.idCliente} == null ? 'Nuevo cliente' : 'Editar cliente'"></h2>
+
+        <form class="formulario" th:action="@{/clientes/guardar}" th:object="${cliente}" method="post">
+
+            <input type="hidden" th:field="*{idCliente}">
+
+            <label for="nombre">Nombre del cliente</label>
+            <input type="text" id="nombre" th:field="*{nombre}" maxlength="100" required autofocus>
+            <p class="error-campo" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+
+            <label for="telefono">Teléfono</label>
+            <input type="text" id="telefono" th:field="*{telefono}" maxlength="20">
+
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion" th:field="*{direccion}" maxlength="150">
+
+            <div class="acciones-formulario">
+                <button type="submit" class="boton boton-primario">Guardar</button>
+                <a class="boton boton-secundario" th:href="@{/clientes}">Cancelar</a>
+            </div>
+
+        </form>
+
+    </main>
+
+    <footer th:replace="~{fragmentos :: pie}"></footer>
+
+</body>
+</html>

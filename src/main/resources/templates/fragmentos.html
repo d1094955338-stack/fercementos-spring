@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- Fragmentos reutilizables de Thymeleaf: cabeceras y pie de pagina.
+     Se incluyen en las demas vistas con th:replace, evitando duplicar
+     el HTML comun (equivalente a los include de JSP, pero tipado). -->
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+    <!-- Cabecera para paginas publicas (login, registro) -->
+    <header class="cabecera" th:fragment="cabeceraPublica">
+        <div class="cabecera-fila">
+            <h1>Ferreteria Fercementos</h1>
+            <nav class="menu-publico">
+                <a th:href="@{/login}">Iniciar sesión</a>
+                <a th:href="@{/registro}">Crear cuenta</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cabecera para paginas internas (requieren sesion) -->
+    <header class="cabecera" th:fragment="cabeceraApp">
+        <div class="cabecera-fila">
+            <h1><a th:href="@{/}">Ferreteria Fercementos</a></h1>
+            <nav class="menu-app">
+                <a th:href="@{/productos}">Productos</a>
+                <a th:href="@{/categorias}">Categorías</a>
+                <a th:href="@{/proveedores}">Proveedores</a>
+                <a th:href="@{/clientes}">Clientes</a>
+                <a th:href="@{/ventas}">Ventas</a>
+            </nav>
+            <div class="sesion-usuario">
+                <!-- sec:authentication muestra el usuario autenticado por Spring Security -->
+                <span>Hola, <span sec:authentication="name">usuario</span></span>
+                <a class="enlace-salir" th:href="@{/logout}">Cerrar sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Pie de pagina comun -->
+    <footer class="pie" th:fragment="pie">
+        <p>Codificación de módulos del software aplicando framework (Spring Boot) &mdash; Ferreteria Fercementos</p>
+    </footer>
+
+</body>
+</html>

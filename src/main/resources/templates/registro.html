@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- Pantalla "Crear cuenta" del prototipo Balsamiq. Los campos son los
+     mismos del prototipo: nombre de usuario, contrasena, correo,
+     numero de identificacion y fecha de nacimiento.
+     th:object enlaza el formulario con la entidad Usuario y th:errors
+     muestra los mensajes de las validaciones (@NotBlank, @Email...). -->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos | Crear cuenta</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos :: cabeceraPublica}"></header>
+
+    <main class="contenedor contenedor-angosto">
+
+        <h2 class="titulo-formulario">Crear cuenta</h2>
+
+        <p class="mensaje-error" th:if="${error}" th:text="${error}"></p>
+
+        <form class="formulario" th:action="@{/registro}" th:object="${usuario}" method="post">
+
+            <label for="nombreUsuario">Nombre de usuario</label>
+            <input type="text" id="nombreUsuario" th:field="*{nombreUsuario}" maxlength="50" required autofocus>
+            <p class="error-campo" th:if="${#fields.hasErrors('nombreUsuario')}" th:errors="*{nombreUsuario}"></p>
+
+            <label for="contrasena">Contraseña del usuario</label>
+            <input type="password" id="contrasena" th:field="*{contrasena}" minlength="6" required>
+            <p class="error-campo" th:if="${#fields.hasErrors('contrasena')}" th:errors="*{contrasena}"></p>
+
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" th:field="*{correo}" maxlength="100" required>
+            <p class="error-campo" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></p>
+
+            <label for="documento">Número de identificación</label>
+            <input type="text" id="documento" th:field="*{documento}" maxlength="20" required>
+
+            <label for="fechaNacimiento">Fecha de nacimiento</label>
+            <input type="date" id="fechaNacimiento" th:field="*{fechaNacimiento}" required>
+
+            <label class="opcion-checkbox">
+                <input type="checkbox" name="aceptaTerminos" required>
+                Yo acepto los términos del servicio y la política de privacidad.
+            </label>
+
+            <div class="acciones-formulario">
+                <button type="submit" class="boton boton-primario">Crear usuario</button>
+                <a class="boton boton-secundario" th:href="@{/login}">Cancelar</a>
+            </div>
+
+        </form>
+
+    </main>
+
+    <footer th:replace="~{fragmentos :: pie}"></footer>
+
+</body>
+</html>

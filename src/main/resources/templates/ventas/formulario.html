@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Paso 1 del flujo de venta: crear la cabecera (fecha + cliente).
+     Al guardar se redirige a la pantalla de detalle para agregar
+     los productos vendidos. -->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos | Nueva venta</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos :: cabeceraApp}"></header>
+
+    <main class="contenedor contenedor-angosto">
+
+        <h2 class="titulo-formulario">Nueva venta</h2>
+
+        <form class="formulario" th:action="@{/ventas/guardar}" th:object="${venta}" method="post">
+
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" th:field="*{fecha}" required>
+
+            <label for="cliente">Cliente</label>
+            <select id="cliente" th:field="*{cliente.idCliente}" required>
+                <option value="">-- Selecciona un cliente --</option>
+                <option th:each="c : ${clientes}"
+                        th:value="${c.idCliente}"
+                        th:text="${c.nombre}"></option>
+            </select>
+
+            <div class="acciones-formulario">
+                <button type="submit" class="boton boton-primario">Crear y agregar productos</button>
+                <a class="boton boton-secundario" th:href="@{/ventas}">Cancelar</a>
+            </div>
+
+        </form>
+
+    </main>
+
+    <footer th:replace="~{fragmentos :: pie}"></footer>
+
+</body>
+</html>
