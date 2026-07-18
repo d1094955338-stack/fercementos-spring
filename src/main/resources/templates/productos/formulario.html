@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- Formulario de producto. Las listas desplegables de categoria y
+     proveedor se llenan con datos reales de la BD; el enlace th:field
+     sobre *{categoria.idCategoria} hace que Spring construya la
+     relacion @ManyToOne automaticamente al recibir el POST. -->
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fercementos | Producto</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:replace="~{fragmentos :: cabeceraApp}"></header>
+
+    <main class="contenedor contenedor-angosto">
+
+        <h2 class="titulo-formulario"
+            th:text="${producto.idProducto} == null ? 'Nuevo producto' : 'Editar producto'"></h2>
+
+        <form class="formulario" th:action="@{/productos/guardar}" th:object="${producto}" method="post">
+
+            <input type="hidden" th:field="*{idProducto}">
+
+            <label for="nombre">Nombre del producto</label>
+            <input type="text" id="nombre" th:field="*{nombre}" maxlength="100" required autofocus>
+            <p class="error-campo" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+
+            <label for="categoria">Categoría</label>
+            <select id="categoria" th:field="*{categoria.idCategoria}">
+                <option value="">-- Sin categoría --</option>
+                <option th:each="c : ${categorias}"
+                        th:value="${c.idCategoria}"
+                        th:text="${c.nombreCategoria}"></option>
+            </select>
+
+            <label for="proveedor">Proveedor</label>
+            <select id="proveedor" th:field="*{proveedor.idProveedor}">
+                <option value="">-- Sin proveedor --</option>
+                <option th:each="pr : ${proveedores}"
+                        th:value="${pr.idProveedor}"
+                        th:text="${pr.nombre}"></option>
+            </select>
+
+            <label for="precio">Precio (COP)</label>
+            <input type="number" id="precio" th:field="*{precio}" min="0" step="0.01" required>
+            <p class="error-campo" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></p>
+
+            <label for="stock">Stock disponible</label>
+            <input type="number" id="stock" th:field="*{stock}" min="0" step="1" required>
+            <p class="error-campo" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></p>
+
+            <div class="acciones-formulario">
+                <button type="submit" class="boton boton-primario">Guardar</button>
+                <a class="boton boton-secundario" th:href="@{/productos}">Cancelar</a>
+            </div>
+
+        </form>
+
+    </main>
+
+    <footer th:replace="~{fragmentos :: pie}"></footer>
+
+</body>
+</html>
