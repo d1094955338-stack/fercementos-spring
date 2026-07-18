@@ -1,0 +1,330 @@
+/* =====================================================================
+   Fercementos · estilos.css
+   Identidad: ferreteria / materiales de construccion.
+   Paleta inspirada en concreto, acero y senalizacion de obra.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --concreto:        #EDEAE3;
+    --concreto-claro:  #F8F6F2;
+    --concreto-oscuro: #2E2C28;
+    --acero:           #6B6B63;
+    --acero-claro:     #D8D4CB;
+    --naranja:         #E2562B;
+    --naranja-oscuro:  #C2431D;
+    --alerta:          #B23A24;
+    --borde:           #D8D4CB;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--concreto);
+    color: var(--concreto-oscuro);
+    font-family: 'Inter', -apple-system, Segoe UI, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    font-family: 'Oswald', 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0;
+}
+
+/* ---------- Cabecera ---------- */
+
+.cabecera {
+    background: var(--concreto-oscuro);
+    color: var(--concreto-claro);
+    padding: 22px 32px 18px;
+    border-bottom: 6px solid var(--naranja);
+}
+
+.cabecera h1 { font-size: 24px; font-weight: 700; }
+.cabecera h1 a { color: inherit; text-decoration: none; }
+
+.cabecera-fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.menu-app a,
+.menu-publico a {
+    color: var(--acero-claro);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-right: 16px;
+    padding-bottom: 2px;
+}
+
+.menu-app a:hover,
+.menu-publico a:hover {
+    color: #FFFFFF;
+    border-bottom: 2px solid var(--naranja);
+}
+
+.sesion-usuario { color: var(--acero-claro); font-size: 13px; }
+
+.enlace-salir {
+    color: var(--naranja);
+    margin-left: 12px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ---------- Contenedor ---------- */
+
+.contenedor {
+    max-width: 960px;
+    margin: 32px auto;
+    padding: 0 24px;
+}
+
+.contenedor-angosto { max-width: 560px; }
+
+.barra-acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.titulo-formulario { font-size: 20px; margin-bottom: 16px; }
+.subtitulo-inicio { color: var(--acero); }
+
+/* ---------- Botones ---------- */
+
+.boton {
+    display: inline-block;
+    padding: 10px 20px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.boton-primario { background: var(--naranja); color: #FFFFFF; }
+.boton-primario:hover { background: var(--naranja-oscuro); }
+
+.boton-secundario {
+    background: transparent;
+    border-color: var(--acero);
+    color: var(--concreto-oscuro);
+}
+.boton-secundario:hover { background: var(--acero-claro); }
+
+/* ---------- Tablas ---------- */
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--concreto-claro);
+    box-shadow: 0 1px 0 var(--borde);
+}
+
+.tabla thead th {
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--acero);
+    border-bottom: 2px solid var(--concreto-oscuro);
+    padding: 10px 14px;
+}
+
+.tabla tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--borde);
+    font-variant-numeric: tabular-nums;
+}
+
+.tabla tbody tr:hover { background: var(--concreto); }
+
+.celda-acciones { white-space: nowrap; }
+
+.enlace-editar, .enlace-eliminar {
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 14px;
+}
+
+.enlace-editar { color: var(--naranja-oscuro); }
+.enlace-eliminar { color: var(--alerta); }
+.enlace-editar:hover, .enlace-eliminar:hover { text-decoration: underline; }
+
+.mensaje-vacio {
+    padding: 32px;
+    text-align: center;
+    color: var(--acero);
+    background: var(--concreto-claro);
+    border: 1px dashed var(--borde);
+}
+
+/* ---------- Formularios ---------- */
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 480px;
+    background: var(--concreto-claro);
+    padding: 28px;
+    border: 1px solid var(--borde);
+}
+
+.formulario label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--acero);
+}
+
+.formulario input,
+.formulario select {
+    padding: 10px 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid var(--borde);
+    border-radius: 2px;
+    background: #FFFFFF;
+    color: var(--concreto-oscuro);
+}
+
+.formulario input:focus,
+.formulario select:focus {
+    outline: 2px solid var(--naranja);
+    outline-offset: 1px;
+}
+
+.acciones-formulario { display: flex; gap: 12px; margin-top: 10px; }
+
+.opcion-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px !important;
+    color: var(--concreto-oscuro) !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.enlace-secundario { font-size: 13px; color: var(--acero); margin: 0; }
+.enlace-secundario a { color: var(--naranja-oscuro); }
+
+/* ---------- Mensajes ---------- */
+
+.mensaje-error {
+    padding: 12px 16px;
+    background: #FBEAE6;
+    border-left: 4px solid var(--alerta);
+    color: var(--alerta);
+    font-size: 14px;
+}
+
+.mensaje-exito {
+    padding: 12px 16px;
+    background: #E8F2E8;
+    border-left: 4px solid #3E7C3E;
+    color: #2E5C2E;
+    font-size: 14px;
+}
+
+.error-campo { color: var(--alerta); font-size: 12px; margin: -8px 0 0; }
+
+/* ---------- Menu principal (tarjetas) ---------- */
+
+.grilla-modulos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.tarjeta-modulo {
+    display: block;
+    background: var(--concreto-claro);
+    border: 1px solid var(--borde);
+    border-top: 4px solid var(--naranja);
+    padding: 20px;
+    text-decoration: none;
+    color: var(--concreto-oscuro);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.tarjeta-modulo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(46, 44, 40, 0.12);
+}
+
+.tarjeta-modulo h3 { font-size: 17px; margin-bottom: 6px; }
+.tarjeta-modulo p { margin: 0; color: var(--acero); font-size: 13px; }
+
+/* ---------- Modulo de ventas ---------- */
+
+.total-venta {
+    text-align: right;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    margin-top: 12px;
+}
+
+.fila-agregar {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    background: var(--concreto-claro);
+    border: 1px solid var(--borde);
+    padding: 16px;
+}
+
+.fila-agregar .campo { display: flex; flex-direction: column; gap: 4px; }
+
+.fila-agregar label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--acero);
+}
+
+.fila-agregar input,
+.fila-agregar select {
+    padding: 8px 10px;
+    border: 1px solid var(--borde);
+    border-radius: 2px;
+}
+
+/* ---------- Pie ---------- */
+
+.pie {
+    max-width: 960px;
+    margin: 40px auto 24px;
+    padding: 0 24px;
+    color: var(--acero);
+    font-size: 12px;
+    text-align: center;
+}
